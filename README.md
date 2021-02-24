@@ -1,2 +1,2 @@
 # DriveChangeMonitor
-This script detects changes in the system patition layout. Used for detecting when drives are connected/disconnected. 
+This script detects changes in the system patition layout. Used for detecting when drives are connected/disconnected. It's designed to use with Syncro but if you don't need that just pull out lines X and X.
