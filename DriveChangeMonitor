@@ -1,4 +1,4 @@
-#Version 1
+#Version 1.1
 #Script created by Samantha Motz - Motz Technologies LLC- Sam@motztech.com. Tested on PowerShell 5 and Windows 10. May not work on lower versions. Use at your own risk. 
 #This script check if any drives have been added or removed from the system since it last ran. It will always return "No drive changes detected" the very first time it is run on a system. 
 
@@ -23,8 +23,14 @@ $Checker = "C:\logs\disks2.log"
 if(Compare-Object -ReferenceObject $(Get-Content $Basefile) -DifferenceObject $(Get-Content $Checker))
 
  {
- write "The drive layout of this system has chaned"
- Rmm-Alert -Category 'Drive changes' -Body 'The drive layout of this system has chaned'
+ write "The drive layout of this system has changed"
+ Rmm-Alert -Category 'Drive changes' -Body 'The drive layout of this system has changed'
+ Remove-Item C:\logs\disks.log -Force
+ Copy-Item -Path C:\logs\disks2.log -Destination C:\logs\disks.log -Force
+ Remove-Item -Path C:\logs\disks2.log -Force
  }
 
-Else {"No drive changes detected"}
+Else {
+Write "No drive changes detected"
+Remove-Item -Path C:\logs\disks2.log -Force
+ }
